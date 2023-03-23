@@ -1,0 +1,27 @@
+<mat-grid-list cols="4" rowHeight="600px">
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>iBook</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <quill-editor
+          #quillEditor
+          [styles]="{ height: '200px' }"
+          (onEditorChanged)="changedEditor($event)"
+        ></quill-editor>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="saveDraft()">Save Draft</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-drawer-container class="drawer-container" autosize>
+      <mat-drawer #drawer class="drawer-sidenav" mode="side" position="end">
+        <app-word-details *ngIf="wordData"></app-word-details>
+      </mat-drawer>
+    </mat-drawer-container>
+  </mat-grid-tile>
+</mat-grid-list>

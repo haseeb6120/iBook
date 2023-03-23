@@ -1,0 +1,55 @@
+<mat-card *ngFor="let wordData of wordDetails$ | async">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon aria-hidden="false" fontIcon="search"></mat-icon>
+    </div>
+    <mat-card-title>{{ wordData.word }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <b>Phonetics:</b>
+
+    <ul>
+      <ng-container *ngFor="let item of wordData.phonetics">
+        <li *ngIf="item.text">
+          {{ item.text }}
+        </li>
+      </ng-container>
+    </ul>
+
+    <ng-container *ngFor="let item of wordData.meanings">
+      <div class="m-14"><b>Part of Speech: </b> {{ item.partOfSpeech }}</div>
+
+      <div class="pl-15">
+        <div *ngIf="item.definitions.length">
+          <b>Definitions:</b>
+
+          <ul>
+            <li *ngFor="let def of item.definitions">
+              {{ def.definition }}
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="item.synonyms.length">
+          <b>Synonyms:</b>
+
+          <ul>
+            <li *ngFor="let syn of item.synonyms">
+              {{ syn }}
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="item.antonyms.length">
+          <b>Antonyms:</b>
+
+          <ul>
+            <li *ngFor="let ant of item.antonyms">
+              {{ ant }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
